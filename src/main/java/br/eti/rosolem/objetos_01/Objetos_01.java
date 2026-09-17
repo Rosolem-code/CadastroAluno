@@ -1,5 +1,7 @@
 package br.eti.rosolem.objetos_01;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -8,63 +10,70 @@ import java.util.Scanner;
  */
 public class Objetos_01 {
 
-    public static final int max = 1;
+    public static void main3(String[] args) {
+
+        Aluno a1 = new Aluno();
+
+        a1.id = 7;
+        a1.nome = "rosolem";
+        a1.telefone = 99137;
+        a1.dia = 14;
+        a1.mes = 9;
+        a1.ano = 2009;
+
+        System.out.println(a1.toString());
+
+        Aluno a2 = new Aluno(100, "Leo Rosolem", 99137, 14, 9, 2009);
+        System.out.println(a2.toString());
+
+    }
 
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
+
+        List<Aluno> listaAlunos = new ArrayList<>();
+
         Scanner tecladotext = new Scanner(System.in);
-        
-        System.out.println("aperte 1 para começar o cadastro ou 0 para sair: ");
-        
-                
-        
-        //entrada de dados       
-        String[] name = new String[max];
-        long[] telefone = new long[max];
-        int[] id = new int[max];
-        int[] dia = new int[max];
-        int[] mes = new int[max];
-        int[] ano = new int[max];
+        Scanner teclado = new Scanner(System.in);
 
-        for (int i = 0; i < id.length; i++) {
-            System.out.printf("id %d: ", i);
-            id[i] = teclado.nextInt();
+        //entrada de dados
+        while (true) {
 
-            System.out.printf("nome %s: ", i);
-            name[i] = tecladotext.nextLine();
+            Aluno novoAluno = new Aluno();
 
-            System.out.printf("telefone %d: ", i);
-            telefone[i] = teclado.nextLong();
+            System.out.printf("id: ");
+            novoAluno.id = teclado.nextInt();
 
-            System.out.printf("dia do nascimento %d: ", i);
-            dia[i] = teclado.nextInt();
+            if (novoAluno.id == 0) {
+                break;
+            }
 
-            System.out.printf("mes do nascimento %d: ", i);
-            mes[i] = teclado.nextInt();
+            System.out.printf("nome: ");
+            novoAluno.nome = tecladotext.nextLine();
 
-            System.out.printf("ano do nascimento %d: ", i);
-            ano[i] = teclado.nextInt();
+            System.out.printf("telefone: ");
+            novoAluno.telefone = teclado.nextLong();
 
+            System.out.printf("dia do nascimento: ");
+            novoAluno.dia = teclado.nextInt();
+
+            System.out.printf("mes do nascimento: ");
+            novoAluno.mes = teclado.nextInt();
+
+            System.out.printf("ano do nascimento: ");
+            novoAluno.ano = teclado.nextInt();
+
+            listaAlunos.add(novoAluno);
         }
-        //processamento
 
         //saida de dados
         System.out.printf("+----------+--------------------+-------------+------------+-------+\n");
         System.out.printf("| ID       | Nome               | Telefone    | Dt.nasc    | Anos  |\n");
         System.out.printf("+----------+--------------------+-------------+------------+-------+\n");
 
-        for (int i = 0; i < id.length; i++) {
-            System.out.printf("| %-8d | %-18s | %-11d | %02d/%02d/%04d |  %-2d   |\n",
-                    id[i],
-                    name[i],
-                    telefone[i],
-                    dia[i],
-                    mes[i],
-                    ano[i],
-                    2026 - ano[i]);
-
+        for (Aluno aux : listaAlunos) {
+            System.out.println(aux.toString());
         }
-        System.out.printf("+----------+--------------------+-------------+------------+-------+\n");
+
         System.out.println("Fim");
 
     }
